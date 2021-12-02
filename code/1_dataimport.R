@@ -15,7 +15,7 @@ source("code/functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_2021_16nov2021.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_2021_17nov2021.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
@@ -116,3 +116,13 @@ sit_index <- crossing(year = unique(sit_index$year), stream_name = unique(sit_in
          stream_name = factor(stream_name)) 
 
 
+
+# 2021 numbers
+# Starri 44
+# St John 106 (includes 17 in tidal)
+# Nak  544
+# Sinit 191
+# Eagle 601
+
+
+601+191+544+106+44

@@ -20,7 +20,7 @@ impute_global <- function(dfname, Year_column="year", StreamName_column="stream_
   
   # Make sure that all NAs are present (a missing row is NOT same as a row with an NA)
   
-  ### EXAMPLE USAGE ###
+  ### EXAMPLE USAGE ### 
   # impute_global(ktn_index, Year_column="year")
   
 
