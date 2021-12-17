@@ -117,12 +117,4 @@ sit_index <- crossing(year = unique(sit_index$year), stream_name = unique(sit_in
 
 
 
-# 2021 numbers
-# Starri 44
-# St John 106 (includes 17 in tidal)
-# Nak  544
-# Sinit 191
-# Eagle 601
-
-
-601+191+544+106+44
+# DEMO FOR WHITCRITT!
