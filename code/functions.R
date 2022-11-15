@@ -285,4 +285,64 @@ theme_crisp <- function(base_size = 12, base_family = "Arial", rotate_text=TRUE,
 
 
 
+###########################
+add_boot_ci_cols = function(x, times=10000) {
+  
+  # Get column name from input object
+  var = deparse(substitute(x))
+  var = gsub("^\\.\\$","", var)
+  
+  # Bootstrap 95% CI
+  cis = quantile(replicate(times, mean(sample(x, replace=TRUE), na.rm = TRUE)), probs=c(0.025,0.975))
+  
+  # Return data frame of results
+  data.frame(ncount = sum(!is.na(x)), mean=mean(x, na.rm = TRUE), lower_ci=cis[1], upper_ci=cis[2])
+#  https://stackoverflow.com/questions/38554383/bootstrapped-confidence-intervals-with-dplyr#38555073
+}
 
+# min_nb_boot <- function(n=40, mu=500, size=3){
+#   data.frame(x=rnbinom(n=40, mu=mu, size = size)) %>% # Blossom
+#     arrange(x) %>%
+#     mutate(rownum = 1:40) %>%
+#     filter(between(rownum, 2, 39)) %>%
+#     summarise(min(x)) %>%
+#     as.numeric()
+# }
+# 
+# max_nb_boot <- function(n=40, mu=500, size=3){
+#   data.frame(x=rnbinom(n=40, mu=mu, size = size)) %>% 
+#     arrange(x) %>%
+#     mutate(rownum = 1:40) %>%
+#     filter(between(rownum, 2, 39)) %>%
+#     summarise(max(x)) %>%
+#     as.numeric()
+# }
+
+min_nb_boot <- function(n=1000, mu=500, size=3, alpha = 0.05){
+  .high = n-round(n*alpha/2)
+  .low <- round(n*alpha/2)+1
+  data.frame(x=rnbinom(n=n, mu=mu, size = size)) %>% 
+    arrange(x) %>%
+    mutate(rownum = 1:n) %>%
+    filter(between(rownum, .low, .high)) %>%
+    summarise(min(x)) %>%
+    as.numeric()
+}
+
+max_nb_boot <- function(n=1000, mu=500, size=3, alpha = 0.05){
+  .high = n-round(n*alpha/2)
+  .low <- round(n*alpha/2)+1
+  data.frame(x=rnbinom(n=n, mu=mu, size = size)) %>% 
+    arrange(x) %>%
+    mutate(rownum = 1:n) %>%
+    filter(between(rownum, .low, .high)) %>%
+    summarise(max(x)) %>%
+    as.numeric()
+}
+
+
+
+
+
+min_nb_boot(n=1000, mu=1700, size=3, alpha = 0.01)
+max_nb_boot(n=1000, mu=1700, size=3, alpha = 0.01)

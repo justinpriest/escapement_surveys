@@ -14,11 +14,13 @@ ktn_survey_final <- ktn_imp4 %>%
 
 ktn_survey_final %>% 
   group_by(year) %>% 
-  summarise(esc_total = round(sum(total_count))) %>%
+  summarise(esc_total = round(sum(total_count))) %>% 
   ggplot(aes(x = year, y = esc_total)) + 
   geom_col(fill = "gray", color = "black") +
   geom_line(aes(y=4250), size = 1) +
   geom_line(aes(y=8500), size = 1) +
+  # geom_line(aes(y=5721), size = 1, color = "darkred") +  # 20th percentile, for Randy
+  # geom_line(aes(y=10000), size = 1, color = "darkred") + # 60th percentile, for Randy
   #expand_limits(x = 1980) +
   scale_x_continuous(breaks = seq(from = 1987, to = 2021, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000)) +

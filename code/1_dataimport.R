@@ -15,7 +15,7 @@ source("code/functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_2021_17nov2021.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_2021_16nov2021.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
@@ -37,7 +37,7 @@ escapements <- read_csv(here::here("data/salmonescapementsurveys_2021_17nov2021.
 
 ####### MANUALLY FIX ANY ISSUES HERE
 escapements <- escapements %>% 
-  mutate(total_count = tidal_count + live_count,
+  mutate(total_count = tidal_count + live_count + `Dead Count`, # Dead count only applies to 1995 Choca, SCH email 7/14/2022
          #manually exclude certain surveys by changing usage_code to 1 (poor survey)
          # in future, update OceanAK database with these values!
          usage_code = replace(usage_code, stream_name == "Indian Creek" & year == 1987, 1),
@@ -63,7 +63,9 @@ escapements <- escapements %>%
          usage_code = replace(usage_code, stream_name == "Klahini River" & year == 2014, 1),
          usage_code = replace(usage_code, stream_name == "Humpback Creek" & year == 2014, 1),
          usage_code = replace(usage_code, stream_name == "Humpback Creek" & year == 2018, 1),
-         live_count = replace(live_count, stream_name == "Marten River" & year == 2004, 1835),
+         #live_count = replace(live_count, stream_name == "Marten River" & year == 2004, 1835), 
+         # include Dick's Creek counts in Marten total, SCH email 7/14/2022
+         # Already correct here, but ensure 2013 Humpback peak is AWP foot survey (550), SCH email 7/14/2022
          usage_code = replace(usage_code, stream_name == "Carroll Creek" & 
                                 year == 2019 & survey_type_name == "FOOT", 1), # ignore this foot survey, heli more accurate
          usage_code = replace(usage_code, stream_name == "Nakwasina River" & year == 2020, 1),
@@ -116,5 +118,3 @@ sit_index <- crossing(year = unique(sit_index$year), stream_name = unique(sit_in
          stream_name = factor(stream_name)) 
 
 
-
-# DEMO FOR WHITCRITT!
