@@ -12,7 +12,7 @@ ktn_survey_final <- ktn_imp4 %>%
                                          "Blossom River",	"Keta River", "Marten River", 
                                          "Humpback Creek", "Tombstone River")))
 
-ktn_survey_final %>% 
+ktnescplot2022 <- ktn_survey_final %>% 
   group_by(year) %>% 
   summarise(esc_total = round(sum(total_count))) %>% 
   ggplot(aes(x = year, y = esc_total)) + 
@@ -22,26 +22,27 @@ ktn_survey_final %>%
   # geom_line(aes(y=5721), size = 1, color = "darkred") +  # 20th percentile, for Randy
   # geom_line(aes(y=10000), size = 1, color = "darkred") + # 60th percentile, for Randy
   #expand_limits(x = 1980) +
-  scale_x_continuous(breaks = seq(from = 1987, to = 2021, by = 2)) +
+  scale_x_continuous(breaks = seq(from = 1987, to = curr_yr, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000)) +
   labs(x = "", y = "Escapement Survey Count", 
        title = "Ketchikan Coho Escapement Survey Index") + 
   theme_crisp(base_family = "Arial")
+ktnescplot2022
 
 
-ktn_survey_final %>% 
+ktnseparatedplot2022 <- ktn_survey_final %>% 
   ggplot(aes(x = year, y = total_count, fill = stream_name)) + 
   geom_col(color = "black") +
   scale_fill_adfg(palette = "camai") +
-  scale_x_continuous(breaks = seq(from = 1987, to = 2021, by = 2)) +
+  scale_x_continuous(breaks = seq(from = 1987, to = curr_yr, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000)) +
   labs(x = "", y = "Escapement Survey Count", 
        title = "Ketchikan Coho Escapement Survey Index - Broken out by component streams",
        fill = "Stream") + 
   theme_crisp(base_family = "Arial")
+ktnseparatedplot2022
 
-
-ktn_survey_final %>% 
+ktnfacetplot2022 <- ktn_survey_final %>% 
   ggplot(aes(x = year, y = total_count, fill = stream_name)) + 
   geom_col(color = "black") +
   scale_fill_adfg(palette = "camai") +
@@ -51,6 +52,17 @@ ktn_survey_final %>%
        fill = "Stream") + 
   facet_wrap(~stream_name, scales = "free") +
   theme_crisp(base_family = "Arial", rotate_text = FALSE) +
-  theme(legend.position="none")
+  theme(legend.position="none",
+        axis.text = element_text(size = 8))
+ktnfacetplot2022
+
+
+
+
+ggsave(ktnescplot2022,       filename = "plots/2022_KTN_1_EscSummary.png",     dpi = 700)
+ggsave(ktnseparatedplot2022, filename = "plots/2022_KTN_2_AllRiversTotal.png", dpi = 700)
+ggsave(ktnfacetplot2022,     filename = "plots/2022_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
+
+
 
 

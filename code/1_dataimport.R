@@ -1,8 +1,10 @@
-# UPDATED FOR 2021
+# UPDATED FOR 2022
 
 # The data source for this is salmonescapementsurveys_2021_9nov2021.csv which is straight from OceanAK
 # I used Subject Area "Region I - Salmon - Escapement Surveys" 
 #   with filters Species Name = "Coho" and Year >= 1987.
+# This query is saved on JTP's OceanAK folder: My Folders/escapement surveys/Coho Escapement Surveys 1987-2022
+# Save this as a CSV and - importantly! - save as a csv and not the default csv UTF-8
 
 # This script will create the raw (uninterpolated) tables for the Sitka and Ketchikan indices
 
@@ -15,7 +17,7 @@ source("code/functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_2021_16nov2021.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_2022_15dec2022.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
@@ -71,9 +73,10 @@ escapements <- escapements %>%
          usage_code = replace(usage_code, stream_name == "Nakwasina River" & year == 2020, 1),
          # Exclude the Nakwasina 2020 count. It was bad according to Jake W
          usage_code = replace(usage_code, stream_name == "Sinitsin Cove Head" & year == 2020, 1),
-         usage_code = replace(usage_code, stream_name == "Grant Creek" & year == 2021, 1),
-         usage_code = replace(usage_code, stream_name == "Klahini River" & year == 2021, 1))
-         # Exclude Klahini and Grant 2021 per W. Crittenden
+         usage_code = replace(usage_code, stream_name == "Grant Creek" & year == 2021, 1),# Exclude Klahini and Grant 2021 per W. Crittenden
+         usage_code = replace(usage_code, stream_name == "Klahini River" & year == 2021, 1),
+         usage_code = replace(usage_code, stream_name == "Tombstone River" & year == 2022, 1))
+         
 
 
 
