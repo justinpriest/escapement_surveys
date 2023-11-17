@@ -1,6 +1,6 @@
 ### CREATE SUMMARY TABLE OF KETCHIKAN AERIAL SURVEY COUNTS
 
-# Run ketchikan_escapement_2022.R first
+# Run ketchikan_escapement_2023.R first
 
 
 library(openxlsx)
@@ -107,7 +107,7 @@ setColWidths(wb, 1, cols = 14:15, widths = 9)
 
 
 
-saveWorkbook(wb, "KTN_cohosurveytable_1987-2022_V2.xlsx", TRUE)
+saveWorkbook(wb, "KTN_cohosurveytable_1987-2023.xlsx", TRUE)
 
 
 

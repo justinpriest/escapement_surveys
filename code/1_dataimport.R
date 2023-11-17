@@ -1,6 +1,6 @@
-# UPDATED FOR 2022
+# UPDATED FOR 2023
 
-# The data source for this is salmonescapementsurveys_2021_9nov2021.csv which is straight from OceanAK
+# The data source for this is salmonescapementsurveys_20221108.csv which is straight from OceanAK
 # I used Subject Area "Region I - Salmon - Escapement Surveys" 
 #   with filters Species Name = "Coho" and Year >= 1987.
 # This query is saved on JTP's OceanAK folder: My Folders/escapement surveys/Coho Escapement Surveys 1987-2022
@@ -17,7 +17,7 @@ source("code/functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_2022_15dec2022.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_20231108.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
