@@ -62,7 +62,7 @@ finaltable <- ktn_imp4 %>% dplyr::select(year, stream_name, total_count) %>%
                 `Carroll Creek`, `Blossom River`, `Keta River`, `Marten River`,
                 `Humpback Creek`, `Tombstone River`)
 finaltable
-write_csv(finaltable, "ktn_imputedmatrix_2023.csv")
+write_csv(finaltable, "output/ktn_imputedmatrix_2023_V3.csv")
 
 
 ################
