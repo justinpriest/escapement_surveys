@@ -12,7 +12,7 @@ ktn_survey_final <- ktn_imp4 %>%
                                          "Blossom River",	"Keta River", "Marten River", 
                                          "Humpback Creek", "Tombstone River")))
 
-ktnescplot2023 <- ktn_survey_final %>% 
+ktnescplot2024 <- ktn_survey_final %>% 
   group_by(year) %>% 
   summarise(esc_total = round(sum(total_count))) %>% 
   ggplot(aes(x = year, y = esc_total)) + 
@@ -23,14 +23,14 @@ ktnescplot2023 <- ktn_survey_final %>%
   # geom_line(aes(y=10000), size = 1, color = "darkred") + # 60th percentile, for Randy
   #expand_limits(x = 1980) +
   scale_x_continuous(breaks = seq(from = 1987, to = curr_yr, by = 2)) +
-  scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000)) +
+  scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000)) +
   labs(x = "", y = "Escapement Survey Count", 
        title = "Ketchikan Coho Escapement Survey Index") + 
   theme_crisp(base_family = "Arial")
-ktnescplot2023
+ktnescplot2024
 
 
-ktnseparatedplot2023 <- ktn_survey_final %>% 
+ktnseparatedplot2024 <- ktn_survey_final %>% 
   ggplot(aes(x = year, y = total_count, fill = stream_name)) + 
   geom_col(color = "black") +
   scale_fill_adfg(palette = "camai") +
@@ -40,9 +40,9 @@ ktnseparatedplot2023 <- ktn_survey_final %>%
        title = "Ketchikan Coho Escapement Survey Index - Broken out by component streams",
        fill = "Stream") + 
   theme_crisp(base_family = "Arial")
-ktnseparatedplot2023
+ktnseparatedplot2024
 
-ktnfacetplot2023 <- ktn_survey_final %>% 
+ktnfacetplot2024 <- ktn_survey_final %>% 
   ggplot(aes(x = year, y = total_count, fill = stream_name)) + 
   geom_col(color = "black") +
   scale_fill_adfg(palette = "camai") +
@@ -54,14 +54,14 @@ ktnfacetplot2023 <- ktn_survey_final %>%
   theme_crisp(base_family = "Arial", rotate_text = FALSE) +
   theme(legend.position="none",
         axis.text = element_text(size = 8))
-ktnfacetplot2023
+ktnfacetplot2024
 
 
 
 
-ggsave(ktnescplot2023,       filename = "plots/2023_KTN_1_EscSummary.png",     dpi = 700)
-ggsave(ktnseparatedplot2023, filename = "plots/2023_KTN_2_AllRiversTotal.png", dpi = 700)
-ggsave(ktnfacetplot2023,     filename = "plots/2023_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
+ggsave(ktnescplot2024,       filename = "plots/2024_KTN_1_EscSummary.png",     dpi = 700)
+ggsave(ktnseparatedplot2024, filename = "plots/2024_KTN_2_AllRiversTotal.png", dpi = 700)
+ggsave(ktnfacetplot2024,     filename = "plots/2024_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
 
 
 

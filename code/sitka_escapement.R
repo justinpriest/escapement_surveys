@@ -8,7 +8,7 @@ library(scales)
 
 curr_yr <- year(now())
 
-escapements <- read.csv(here::here("data/escapementsurveys_Nov5.csv"), stringsAsFactors = FALSE) %>%
+escapements <- read.csv(here::here("data/salmonescapementsurveys_20241112.csv"), stringsAsFactors = FALSE) %>%
   rename(year = 1, day.mmdd = 2) %>% # rename based on col order
   separate(day.mmdd, c("dayofmonth", "month"), "-") %>% # split the date so that we can make sense of it
   mutate(dayofmonth = as.numeric(dayofmonth), 
