@@ -1,4 +1,4 @@
-# UPDATED FOR 2023
+# UPDATED FOR 2024 
 
 # The data source for this is salmonescapementsurveys_20221108.csv which is straight from OceanAK
 # I used Subject Area "Region I - Salmon - Escapement Surveys" 
@@ -17,7 +17,7 @@ source("code/functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_20231127.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_20241112.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
