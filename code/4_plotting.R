@@ -22,7 +22,7 @@ ktnescplot2024 <- ktn_survey_final %>%
   # geom_line(aes(y=5721), size = 1, color = "darkred") +  # 20th percentile, for Randy
   # geom_line(aes(y=10000), size = 1, color = "darkred") + # 60th percentile, for Randy
   #expand_limits(x = 1980) +
-  scale_x_continuous(breaks = seq(from = 1987, to = curr_yr, by = 2)) +
+  scale_x_continuous(breaks = seq(from = 1988, to = curr_yr, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000)) +
   labs(x = "", y = "Escapement Survey Count", 
        title = "Ketchikan Coho Escapement Survey Index") + 
