@@ -1,6 +1,6 @@
 ### CREATE SUMMARY TABLE OF KETCHIKAN AERIAL SURVEY COUNTS
 
-# Run ketchikan_escapement_2024.R first
+# Run ketchikan_escapement_2025.R first
 
 
 library(openxlsx)
