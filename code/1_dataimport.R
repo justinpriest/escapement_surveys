@@ -78,55 +78,57 @@ escapements <- escapements %>%
          usage_code = replace(usage_code, stream_name == "Sinitsin Cove Head" & year == 2020, "01"),
          usage_code = replace(usage_code, stream_name == "Grant Creek" & year == 2021, "01"),# Exclude Klahini and Grant 2021 per W. Crittenden
          usage_code = replace(usage_code, stream_name == "Klahini River" & year == 2021, "01"),
-         usage_code = replace(usage_code, stream_name == "Tombstone River" & year == 2022, "01"))
+         usage_code = replace(usage_code, stream_name == "Tombstone River" & year == 2022, "01"),
+         usage_code = replace(usage_code, stream_name == "Carroll Creek" & year == 2025, "01")) # J Breese suggested to exclude this survey due to poor conditions and late timing
+
 
 
 ##################
 ### New / Temp for 2023. 
 ### This manually adds in some high counts that were not entered into OceanAK
-
-escapements <- escapements %>% add_row(year = 2023,
-                                       District = 101,
-                        samp_date = as_date("2023-10-23"),
-                        stream_name = "Herman Creek",
-                        usage_code = as.character("02"),
-                        total_count = 210,
-                        valuetype = "survey obs") %>% 
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Grant Creek",
-          usage_code = as.character("02"),
-          total_count = 80,
-          valuetype = "survey obs") %>% 
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Klahini River",
-          usage_code = as.character("02"),
-          total_count = 20,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Indian Creek",
-          usage_code = as.character("02"),
-          total_count = 620,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "King Creek",
-          usage_code = as.character("02"),
-          total_count = 2600,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Choca Creek",
-          usage_code = as.character("02"),
-          total_count = 720,
-          valuetype = "survey obs")
+# 
+# escapements <- escapements %>% add_row(year = 2023,
+#                                        District = 101,
+#                         samp_date = as_date("2023-10-23"),
+#                         stream_name = "Herman Creek",
+#                         usage_code = as.character("02"),
+#                         total_count = 210,
+#                         valuetype = "survey obs") %>% 
+#   add_row(year = 2023,
+#           District = 101,
+#           samp_date = as_date("2023-10-23"),
+#           stream_name = "Grant Creek",
+#           usage_code = as.character("02"),
+#           total_count = 80,
+#           valuetype = "survey obs") %>% 
+#   add_row(year = 2023,
+#           District = 101,
+#           samp_date = as_date("2023-10-23"),
+#           stream_name = "Klahini River",
+#           usage_code = as.character("02"),
+#           total_count = 20,
+#           valuetype = "survey obs") %>%
+#   add_row(year = 2023,
+#           District = 101,
+#           samp_date = as_date("2023-10-23"),
+#           stream_name = "Indian Creek",
+#           usage_code = as.character("02"),
+#           total_count = 620,
+#           valuetype = "survey obs") %>%
+#   add_row(year = 2023,
+#           District = 101,
+#           samp_date = as_date("2023-10-23"),
+#           stream_name = "King Creek",
+#           usage_code = as.character("02"),
+#           total_count = 2600,
+#           valuetype = "survey obs") %>%
+#   add_row(year = 2023,
+#           District = 101,
+#           samp_date = as_date("2023-10-23"),
+#           stream_name = "Choca Creek",
+#           usage_code = as.character("02"),
+#           total_count = 720,
+#           valuetype = "survey obs")
 
 
 ############################

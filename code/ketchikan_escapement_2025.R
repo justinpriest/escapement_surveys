@@ -81,5 +81,4 @@ comparison %>% View()
 # For the summary table, see script "4_KTNsummarytable.R"
 
 
-# 2023:  19706
 
