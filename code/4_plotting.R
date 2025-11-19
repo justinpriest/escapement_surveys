@@ -59,9 +59,9 @@ ktnfacetplot2025
 
 
 
-ggsave(ktnescplot2025,       filename = "plots/2024_KTN_1_EscSummary.png",     dpi = 700)
-ggsave(ktnseparatedplot2025, filename = "plots/2024_KTN_2_AllRiversTotal.png", dpi = 700)
-ggsave(ktnfacetplot2025,     filename = "plots/2024_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
+ggsave(ktnescplot2025,       filename = "plots/2025_KTN_1_EscSummary.png",     dpi = 700)
+ggsave(ktnseparatedplot2025, filename = "plots/2025_KTN_2_AllRiversTotal.png", dpi = 700)
+ggsave(ktnfacetplot2025,     filename = "plots/2025_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
 
 
 
