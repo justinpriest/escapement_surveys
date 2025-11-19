@@ -17,7 +17,7 @@ source("code/functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_20251112.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_20251119.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
