@@ -1,7 +1,7 @@
 # UPDATED FOR 2025 
 
-# The data source for this is salmonescapementsurveys_20221108.csv which is straight from OceanAK
-# I used Subject Area "Region I - Salmon - Escapement Surveys" 
+# The data source for this is salmonescapementsurveys_20251119.csv which is straight from OceanAK
+# Use Subject Area "Region I - Salmon - Escapement Surveys" 
 #   with filters Species Name = "Coho" and Year >= 1987.
 # This query is saved on JTP's OceanAK folder: My Folders/escapement surveys/Coho Escapement Surveys 1987-2022
 # Save this as a CSV and - importantly! - save as a csv and not the default csv UTF-8
