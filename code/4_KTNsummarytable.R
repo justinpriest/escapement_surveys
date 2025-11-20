@@ -1,6 +1,8 @@
 ### CREATE SUMMARY TABLE OF KETCHIKAN AERIAL SURVEY COUNTS
 
-# Run ketchikan_escapement_2025.R first
+# Ensure that the Ketchikan index is already created. 
+# This script takes a while to run so just make sure best imputation is completed
+source("code/2_ketchikan_escapement.R")
 
 
 library(openxlsx)

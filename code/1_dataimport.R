@@ -1,6 +1,6 @@
 # UPDATED FOR 2025 
 
-# The data source for this is salmonescapementsurveys_20251119.csv which is straight from OceanAK
+# The data source for this is salmonescapementsurveys_20251120.csv which is straight from OceanAK
 # Use Subject Area "Region I - Salmon - Escapement Surveys" 
 #   with filters Species Name = "Coho" and Year >= 1987.
 # This query is saved on JTP's OceanAK folder: My Folders/escapement surveys/Coho Escapement Surveys 1987-2022
@@ -11,13 +11,13 @@
 library(tidyverse)
 library(lubridate)
 
-source("code/functions.R")
+source("code/0_functions.R")
 
 
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_20251119.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_20251120.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
@@ -79,56 +79,8 @@ escapements <- escapements %>%
          usage_code = replace(usage_code, stream_name == "Grant Creek" & year == 2021, "01"),# Exclude Klahini and Grant 2021 per W. Crittenden
          usage_code = replace(usage_code, stream_name == "Klahini River" & year == 2021, "01"),
          usage_code = replace(usage_code, stream_name == "Tombstone River" & year == 2022, "01"),
-         usage_code = replace(usage_code, stream_name == "Carroll Creek" & year == 2025, "01")) # J Breese suggested to exclude this survey due to poor conditions and late timing
-
-
-
-##################
-### New / Temp for 2023. 
-### This manually adds in some high counts that were not entered into OceanAK
-# 
-escapements <- escapements %>% add_row(year = 2023,
-                                       District = 101,
-                        samp_date = as_date("2023-10-23"),
-                        stream_name = "Herman Creek",
-                        usage_code = as.character("02"),
-                        total_count = 210,
-                        valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Grant Creek",
-          usage_code = as.character("02"),
-          total_count = 80,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Klahini River",
-          usage_code = as.character("02"),
-          total_count = 20,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Indian Creek",
-          usage_code = as.character("02"),
-          total_count = 620,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "King Creek",
-          usage_code = as.character("02"),
-          total_count = 2600,
-          valuetype = "survey obs") %>%
-  add_row(year = 2023,
-          District = 101,
-          samp_date = as_date("2023-10-23"),
-          stream_name = "Choca Creek",
-          usage_code = as.character("02"),
-          total_count = 720,
-          valuetype = "survey obs")
+         # J Breese suggested to exclude 2025 Carroll survey due to poor conditions and late timing
+         usage_code = replace(usage_code, stream_name == "Carroll Creek" & year == 2025, "01")) 
 
 
 ############################
@@ -147,6 +99,7 @@ ktn_index <- crossing(year = unique(ktn_index$year), stream_name = unique(ktn_in
   left_join(ktn_index) %>% 
   mutate(valuetype = replace_na(valuetype, "imputed"), 
          stream_name = factor(stream_name)) 
+
 
 
 ########################
