@@ -42,7 +42,7 @@ escapements <- read_csv(here::here("data/salmonescapementsurveys_20251120.csv"))
 
 ####### MANUALLY FIX ANY ISSUES HERE
 escapements <- escapements %>% 
-  mutate(total_count = tidal_count + live_count + `Dead Count`, # Dead count only applies to 1995 Choca, SCH email 7/14/2022
+  mutate(total_count = rowSums(across(c(tidal_count, live_count, `Dead Count`)), na.rm = TRUE), # Dead count only applies to 1995 Choca, SCH email 7/14/2022
          #manually exclude certain surveys by changing usage_code to 1 (poor survey)
          # in future, update OceanAK database with these values!
          usage_code = replace(usage_code, stream_name == "Indian Creek" & year == 1987, "01"),
