@@ -17,7 +17,7 @@ source("code/0_functions.R")
 curr_yr <- year(now()) # Careful if doing this in the pre-season :)
 
 
-escapements <- read_csv(here::here("data/salmonescapementsurveys_20251120.csv")) %>%
+escapements <- read_csv(here::here("data/salmonescapementsurveys_2026729.csv")) %>%
   rename(day.mmdd = `Day (mm/dd)`,
          year = Year,
          stream_name = `Stream Name`,
@@ -80,7 +80,7 @@ escapements <- escapements %>%
          usage_code = replace(usage_code, stream_name == "Klahini River" & year == 2021, "01"),
          usage_code = replace(usage_code, stream_name == "Tombstone River" & year == 2022, "01"),
          # J Breese suggested to exclude 2025 Carroll survey due to poor conditions and late timing
-         usage_code = replace(usage_code, stream_name == "Carroll Creek" & year == 2025, "01")) 
+         usage_code = replace(usage_code, stream_name == "Carroll Creek" & year == 2025, "01"))
 
 
 ############################
@@ -110,10 +110,10 @@ SIT_indexstreams <- c("Starrigavin Creek", "Sinitsin Cove Head",	"St. John Bapti
 
 ## According to discussions with Jason Pawluk, they do not include Mouth and Tidal counts in totals
 sit_index <- escapements %>%
-  mutate(total_count = mouth_count + tidal_count + live_count) %>% 
+  #mutate(total_count = mouth_count + tidal_count + live_count) %>% 
   filter(District == 113, stream_name %in% SIT_indexstreams, 
                                     total_count != 0, usage_code != 1) %>%
-  group_by(year, stream_name) %>% slice(which.max(total_count)) # keep only rows with max counts
+ group_by(year, stream_name) %>% slice(which.max(total_count)) # keep only rows with max counts
 # NOTE: I only kept max counts instead of usage code 3 (peak survey) counts. 
 #   In many years, the usage code was not entered but the survey appears to be valid. 
 

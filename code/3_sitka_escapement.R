@@ -28,10 +28,12 @@ sit_index %>% dplyr::select(year, stream_name, total_count) %>%
 sit_imputed <- impute_cohodefault(sit_index, Year_column="year", StreamName_column = "stream_name")
 
 
-sit_imputed %>% dplyr::select(year, stream_name, total_count) %>% 
-  spread(stream_name, total_count) %>% View()
+sitka_index <- sit_imputed %>% dplyr::select(year, stream_name, total_count) %>% 
+  spread(stream_name, total_count) #%>% View()
 sit_imputed %>% dplyr::select(year, stream_name, Count) %>% 
-  spread(stream_name, Count) %>% write.csv(file = "output/sitkaindex_2025.csv")
+  spread(stream_name, Count) 
+  
+write.csv(sitka_index, file = "output/sitkaindex_2025.csv")
 
 
 # 2022 Notes:
