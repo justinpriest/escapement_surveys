@@ -43,7 +43,7 @@ ktnescplot2025 <- ktn_survey_final %>%
   scale_x_continuous(breaks = seq(from = 1987, to = 2025, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000)) +
   labs(x = "", y = "Escapement Survey Count", 
-       title = "Ketchikan Coho Escapement Survey Index") + 
+       title = "Ketchikan Area Coho Salmon Index") + 
   theme_crisp(base_family = "Arial")+
   theme(text = element_text(size = 16))
 ktnescplot2025
