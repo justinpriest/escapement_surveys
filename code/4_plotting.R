@@ -17,16 +17,35 @@ ktnescplot2025 <- ktn_survey_final %>%
   summarise(esc_total = round(sum(total_count))) %>% 
   ggplot(aes(x = year, y = esc_total)) + 
   geom_col(fill = "gray", color = "black") +
-  geom_line(aes(y=4250), linewidth = 1) +
-  geom_line(aes(y=8500), linewidth = 1) +
-  geom_line(aes(y=6000), size = 1, color = "darkred") +  # 20th percentile, for Esc Goal Review
-  geom_line(aes(y=11000), size = 1, color = "darkred") + # 60th percentile, for Esc Goal Review
+  geom_segment(aes(x = 1986,
+                   xend = 2026,   # extend farther right
+                   y = 4250,
+                   yend = 4250),
+               size = 1) +
+  geom_segment(aes(x = 1986,
+                   xend = 2026,   
+                   y = 8500,
+                   yend = 8500),
+                  size = 1) +  
+  geom_segment(aes(x = 1986,
+                   xend = 2026,   
+                   y = 6000,
+                   yend = 6000),
+               linetype = "dashed",
+               color = "blue", size = 1) +  # 20th percentile, for Esc Goal Review
+  geom_segment(aes(x = 1986,
+                   xend = 2026,   
+                   y = 11000,
+                   yend = 11000),
+               linetype = "dashed",
+               color = "blue", size = 1) + # 60th percentile, for Esc Goal Review
   #expand_limits(x = 1980) +
   scale_x_continuous(breaks = seq(from = 1987, to = 2025, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000)) +
   labs(x = "", y = "Escapement Survey Count", 
        title = "Ketchikan Coho Escapement Survey Index") + 
-  theme_crisp(base_family = "Arial")
+  theme_crisp(base_family = "Arial")+
+  theme(text = element_text(size = 16))
 ktnescplot2025
 
 
