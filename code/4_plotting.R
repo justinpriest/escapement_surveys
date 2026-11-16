@@ -12,7 +12,7 @@ ktn_survey_final <- ktn_imp4 %>%
                                          "Blossom River",	"Keta River", "Marten River", 
                                          "Humpback Creek", "Tombstone River")))
 
-ktnescplot2025 <- ktn_survey_final %>% 
+ktnescplot2026 <- ktn_survey_final %>% 
   group_by(year) %>% 
   summarise(esc_total = round(sum(total_count))) %>% 
   ggplot(aes(x = year, y = esc_total)) + 
@@ -27,18 +27,18 @@ ktnescplot2025 <- ktn_survey_final %>%
                    y = 8500,
                    yend = 8500),
                   size = 1) +  
-  geom_segment(aes(x = 1986,
-                   xend = 2026,   
-                   y = 6000,
-                   yend = 6000),
-               linetype = "dashed",
-               color = "blue", size = 1) +  # 20th percentile, for Esc Goal Review
-  geom_segment(aes(x = 1986,
-                   xend = 2026,   
-                   y = 11000,
-                   yend = 11000),
-               linetype = "dashed",
-               color = "blue", size = 1) + # 60th percentile, for Esc Goal Review
+  # geom_segment(aes(x = 1986,
+  #                  xend = 2026,   
+  #                  y = 6000,
+  #                  yend = 6000),
+  #              linetype = "dashed",
+  #              color = "blue", size = 1) +  # 20th percentile, for Esc Goal Review
+  # geom_segment(aes(x = 1986,
+  #                  xend = 2026,   
+  #                  y = 11000,
+  #                  yend = 11000),
+  #              linetype = "dashed",
+  #              color = "blue", size = 1) + # 60th percentile, for Esc Goal Review
   #expand_limits(x = 1980) +
   scale_x_continuous(breaks = seq(from = 1987, to = 2025, by = 2)) +
   scale_y_continuous(labels = scales::comma, breaks = c(0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000)) +
@@ -46,10 +46,10 @@ ktnescplot2025 <- ktn_survey_final %>%
        title = "Ketchikan Area Coho Salmon Index") + 
   theme_crisp(base_family = "Arial")+
   theme(text = element_text(size = 16))
-ktnescplot2025
+ktnescplot2026
 
 
-ktnseparatedplot2025 <- ktn_survey_final %>% 
+ktnseparatedplot2026 <- ktn_survey_final %>% 
   ggplot(aes(x = year, y = total_count, fill = stream_name)) + 
   geom_col(color = "black") +
   scale_fill_adfg(palette = "camai") +
@@ -59,9 +59,9 @@ ktnseparatedplot2025 <- ktn_survey_final %>%
        title = "Ketchikan Coho Escapement Survey Index - Broken out by component streams",
        fill = "Stream") + 
   theme_crisp(base_family = "Arial")
-ktnseparatedplot2025
+ktnseparatedplot2026
 
-ktnfacetplot2025 <- ktn_survey_final %>% 
+ktnfacetplot2026 <- ktn_survey_final %>% 
   ggplot(aes(x = year, y = total_count, fill = stream_name)) + 
   geom_col(color = "black") +
   scale_fill_adfg(palette = "camai") +
@@ -73,14 +73,14 @@ ktnfacetplot2025 <- ktn_survey_final %>%
   theme_crisp(base_family = "Arial", rotate_text = FALSE) +
   theme(legend.position="none",
         axis.text = element_text(size = 8))
-ktnfacetplot2025
+ktnfacetplot2026
 
 
 
 
-ggsave(ktnescplot2025,       filename = "plots/2025_KTN_1_EscSummary.png",     dpi = 700)
-ggsave(ktnseparatedplot2025, filename = "plots/2025_KTN_2_AllRiversTotal.png", dpi = 700)
-ggsave(ktnfacetplot2025,     filename = "plots/2025_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
+ggsave(ktnescplot2026,       filename = "plots/2026_KTN_1_EscSummary.png",     dpi = 700)
+ggsave(ktnseparatedplot2026, filename = "plots/2026_KTN_2_AllRiversTotal.png", dpi = 700)
+ggsave(ktnfacetplot2026,     filename = "plots/2026_KTN_3_AllRiversFacet.png", dpi = 700, width = 12, height = 8)
 
 
 
